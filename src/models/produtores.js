@@ -1,5 +1,6 @@
 import Sequelize,{Model} from 'sequelize';
 import bcryptjs from 'bcryptjs';
+import { userInfo } from 'os';
 
 export default class Produtores extends Model{
     static init(sequelize){
@@ -42,7 +43,10 @@ export default class Produtores extends Model{
         })
 
         this.addHook('beforeSave',async produtor =>{
-             produtor.password_hash = await bcryptjs.hash(produtor.password,8);
+             if(produtor.password){
+                produtor.password_hash = await bcryptjs.hash(produtor.password,8);
+             }
+             
 
         })
         return this;
