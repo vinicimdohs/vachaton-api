@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import Produtor from '../models/produtores'
 
-export default (req,res,next) =>{
+export default async (req,res,next) =>{
     const {authorization} = req.headers;
 
     if(!authorization){
@@ -15,6 +16,19 @@ export default (req,res,next) =>{
         const dados = jwt.verify(token,process.env.TOKEN_SECRET);
         const {id,email} = dados;
 
+        const produtor = await Produtor.findOne({
+            where:{
+                id,
+                email
+            }
+        })
+
+        if(!produtor){
+            return res.status(401).json({
+                errors:['Usuário inválido'],
+            });
+        }
+        
         req.produtorId = id;
         req.produtorEmail = email;
 

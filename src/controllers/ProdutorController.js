@@ -39,15 +39,7 @@ class ProdutorController {
 
     async update(req,res){
         try{
-            const{id} = req.params;
-
-            if(!id){
-                return res.status(400).json({
-                    errors:['ID não enviado']
-                })
-            }
-
-            const produtor = await Produtor.findByPk(id);
+            const produtor = await Produtor.findByPk(req.produtorId);
 
             if(!produtor){
                 return res.status(400).json({
@@ -67,15 +59,7 @@ class ProdutorController {
 
     async remove(req,res){
         try{
-            const{id} = req.params;
-
-            if(!id){
-                return res.status(400).json({
-                    errors:['ID não enviado']
-                })
-            }
-
-            const produtor = await Produtor.findByPk(id);
+            const produtor = await Produtor.findByPk(req.produtorId);
 
             if(!produtor){
                 return res.status(400).json({
