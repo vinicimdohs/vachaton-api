@@ -5,7 +5,13 @@ export default class Vaca extends Model{
         super.init({
             identificacao:{
                 type:Sequelize.STRING,
-                
+                defaultValue:'',
+                validade:{
+                     len:{
+                          args:[1,45],
+                          msg:'identificação precisa ter no máximo 45 caracteres'
+                     }
+                }
            },
            ordem_lactacao:{
                 type:Sequelize.INTEGER,
@@ -33,7 +39,6 @@ export default class Vaca extends Model{
            },
            mastite:{
                 type:Sequelize.BOOLEAN,
-               
            },
            id_produtor:{
             type: Sequelize.INTEGER ,
@@ -42,6 +47,11 @@ export default class Vaca extends Model{
         },{
             sequelize,
         })
+
+        this.addHook('beforeSave',async vaca =>{
+             vaca.producao_acumulada += vaca.producao_diaria;
+          })
+
         return this;
     }
 }
