@@ -45,6 +45,12 @@ module.exports = {
        id_produtor:{
         type: Sequelize.INTEGER ,
         allowNull:false,
+        references:{
+          model:'produtores',
+          key:'id'
+        },
+        onDelete:'CASCADE',
+        onUpdate:'CASCADE',
        },
        created_at:{
         type:Sequelize.DATE,
@@ -65,3 +71,4 @@ module.exports = {
     
   }
 };
+

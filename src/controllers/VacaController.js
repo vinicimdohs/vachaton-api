@@ -23,6 +23,7 @@ class VacaController {
            } = req.body;
 
            //mastite = true/false será descoberto via rede neural
+           
            //id_produtor via token
            const id_produtor = req.produtorId;
            

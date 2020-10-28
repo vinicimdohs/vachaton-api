@@ -54,4 +54,9 @@ export default class Vaca extends Model{
 
         return this;
     }
+
+    static associate(models){
+         this.belongsTo(models.Produtores,{foreignKey:'id_produtor'})
+
+    }
 }
