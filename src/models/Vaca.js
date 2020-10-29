@@ -19,10 +19,13 @@ export default class Vaca extends Model{
            },
            producao_diaria:{
                  type:Sequelize.FLOAT,
+                 defaultValue:0,
+
                 
            },
            producao_acumulada:{
                 type:Sequelize.FLOAT,
+                defaultValue:0,
                 
            },
            dias_lactacao:{

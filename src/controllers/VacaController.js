@@ -19,10 +19,8 @@ class VacaController {
             dias_lactacao,
             epoca_coleta,
             idade_vaca,
-            mastite,
+            mastite=false,
            } = req.body;
-
-           //mastite = true/false será descoberto via rede neural
            
            //id_produtor via token
            const id_produtor = req.produtorId;
@@ -91,6 +89,10 @@ class VacaController {
                     errors:['Vaca não existe']
                 });
             }
+
+            //const {producao_diaria,ordem_lactacao,dias_lactacao} = req.body;
+
+            //mastite = true/false será descoberto via rede neural
 
             const novaVaca = await vaca.update(req.body);
 
