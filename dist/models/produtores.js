@@ -1,12 +1,12 @@
-import Sequelize,{Model} from 'sequelize';
-import bcryptjs from 'bcryptjs';
-import { userInfo } from 'os';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
+var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
+var _os = require('os');
 
-export default class Produtores extends Model{
+ class Produtores extends _sequelize.Model{
     static init(sequelize){
         super.init({
            email: {
-               type:Sequelize.STRING,
+               type:_sequelize2.default.STRING,
                defaultValue:'',
                validadte:{
                     isEmail:{
@@ -15,11 +15,11 @@ export default class Produtores extends Model{
                }
               },
            password_hash: {
-               type:Sequelize.STRING,
+               type:_sequelize2.default.STRING,
                defaultValue:'',
               },
            password:{
-               type:Sequelize.VIRTUAL,
+               type:_sequelize2.default.VIRTUAL,
                defaultValue:'',
                validadte:{
                     len:{
@@ -29,7 +29,7 @@ export default class Produtores extends Model{
                }
               },
            nome: {
-                type:Sequelize.STRING,
+                type:_sequelize2.default.STRING,
                 defaultValue:'',
                 validadte:{
                      len:{
@@ -44,7 +44,7 @@ export default class Produtores extends Model{
 
         this.addHook('beforeSave',async produtor =>{
              if(produtor.password){
-                produtor.password_hash = await bcryptjs.hash(produtor.password,8);
+                produtor.password_hash = await _bcryptjs2.default.hash(produtor.password,8);
              }
              
 
@@ -53,11 +53,11 @@ export default class Produtores extends Model{
     }
 
     passwordIsValid(password){
-         return bcryptjs.compare(password,this.password_hash)
+         return _bcryptjs2.default.compare(password,this.password_hash)
     }
 
     static associate(models){
      this.hasMany(models.Vaca,{foreignKey:'id_produtor'})
 
 }
-}
+} exports.default = Produtores;

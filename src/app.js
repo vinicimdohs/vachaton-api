@@ -1,13 +1,14 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import './src/database';
+import './database';
 
 import express from 'express';
-import homeRoutes from "./src/routes/homeRoutes";
-import produtorRoutes from './src/routes/produtorRoutes';
-import tokenRoutes from './src/routes/tokenRoutes';
-import vacaRoutes from './src/routes/vacaRoutes'
+
+import homeRoutes from "./routes/homeRoutes";
+import produtorRoutes from './routes/produtorRoutes';
+import tokenRoutes from './routes/tokenRoutes';
+import vacaRoutes from './routes/vacaRoutes'
 
 class App {
     constructor(){

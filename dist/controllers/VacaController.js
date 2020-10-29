@@ -1,9 +1,9 @@
-import Vaca from '../models/Vaca'
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Vaca = require('../models/Vaca'); var _Vaca2 = _interopRequireDefault(_Vaca);
 
 class VacaController {
     async index(req,res){
 
-        const vacas = await Vaca.findAll({
+        const vacas = await _Vaca2.default.findAll({
             order:[['id','DESC']]
         });
         res.json(
@@ -27,7 +27,7 @@ class VacaController {
            //id_produtor via token
            const id_produtor = req.produtorId;
            
-           const vaca = await Vaca.create({
+           const vaca = await _Vaca2.default.create({
             identificacao,
             ordem_lactacao,
             producao_diaria,
@@ -57,7 +57,7 @@ class VacaController {
                 });
             }
 
-            const vaca = await Vaca.findByPk(id)
+            const vaca = await _Vaca2.default.findByPk(id)
 
             if(!vaca){
                 return res.status(400).json({
@@ -84,7 +84,7 @@ class VacaController {
                 });
             }
 
-            const vaca = await Vaca.findByPk(id)
+            const vaca = await _Vaca2.default.findByPk(id)
 
             if(!vaca){
                 return res.status(400).json({
@@ -119,7 +119,7 @@ class VacaController {
                 });
             }
 
-            const vaca = await Vaca.findByPk(id)
+            const vaca = await _Vaca2.default.findByPk(id)
 
             if(!vaca){
                 return res.status(400).json({
@@ -141,4 +141,4 @@ class VacaController {
     }
 }
 
-export default new VacaController();
+exports. default = new VacaController();

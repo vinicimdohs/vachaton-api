@@ -1,11 +1,11 @@
-import Produtor from '../models/produtores'
-import Vaca from '../models/Vaca';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _produtores = require('../models/produtores'); var _produtores2 = _interopRequireDefault(_produtores);
+var _Vaca = require('../models/Vaca'); var _Vaca2 = _interopRequireDefault(_Vaca);
 
 class ProdutorController {
     async store(req,res){
         try{
 
-            const novoProdutor = await Produtor.create(req.body)
+            const novoProdutor = await _produtores2.default.create(req.body)
     
             return res.json(
                 novoProdutor
@@ -20,10 +20,10 @@ class ProdutorController {
 
     async index(req,res){
         try{
-            const produtores = await Produtor.findAll({
+            const produtores = await _produtores2.default.findAll({
                 order:[['id','DESC']],
                 include:{
-                    model:Vaca,
+                    model:_Vaca2.default,
                 }
             });
             return res.json(produtores);
@@ -36,9 +36,9 @@ class ProdutorController {
         try{
             const{id} = req.params;
 
-            const produtor = await Produtor.findByPk(id,{
+            const produtor = await _produtores2.default.findByPk(id,{
                 include:{
-                    model:Vaca,
+                    model:_Vaca2.default,
                 }
             });
             return res.json(produtor);
@@ -49,7 +49,7 @@ class ProdutorController {
 
     async update(req,res){
         try{
-            const produtor = await Produtor.findByPk(req.produtorId);
+            const produtor = await _produtores2.default.findByPk(req.produtorId);
 
             if(!produtor){
                 return res.status(400).json({
@@ -69,7 +69,7 @@ class ProdutorController {
 
     async remove(req,res){
         try{
-            const produtor = await Produtor.findByPk(req.produtorId);
+            const produtor = await _produtores2.default.findByPk(req.produtorId);
 
             if(!produtor){
                 return res.status(400).json({
@@ -88,4 +88,4 @@ class ProdutorController {
     }
 }
 
-export default new ProdutorController();
+exports. default = new ProdutorController();
